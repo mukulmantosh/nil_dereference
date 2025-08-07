@@ -12,3 +12,11 @@ func SafeCreateUser(id int, name string) (*User, error) {
 	fmt.Printf("Created user: %s, %d", user.Name, user.Id)
 	return user, nil
 }
+
+func main() {
+	_, err := SafeCreateUser(1, "")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+}

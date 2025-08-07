@@ -1,6 +1,10 @@
 package main
 
-import "errors"
+import (
+	"errors"
+)
+
+var globalCounter int64
 
 type User struct {
 	Id   int
