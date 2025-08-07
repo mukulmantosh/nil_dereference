@@ -9,14 +9,17 @@ func SafeCreateUser(id int, name string) (*User, error) {
 	if err != nil {
 		return nil, fmt.Errorf("create user failed: %v", err)
 	}
-	fmt.Printf("Created user: %s, %d", user.Name, user.Id)
 	return user, nil
 }
 
-func main() {
-	_, err := SafeCreateUser(1, "")
+func SafeCreateUserDeeper(id int, name string) {
+	user, err := SafeCreateUser(id, name)
 	if err != nil {
-		fmt.Println(err)
+		return
 	}
+	fmt.Printf("Name: %s, ID: %d", user.Name, user.Id)
+}
 
+func main() {
+	SafeCreateUserDeeper(1, "Mukul")
 }
