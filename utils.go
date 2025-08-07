@@ -13,3 +13,7 @@ func IsValidName(name string) bool {
 	matched, _ := regexp.MatchString(`^[A-Za-z0-9]+$`, name)
 	return matched
 }
+
+func (user *User) Validate() bool {
+	return IsValidId(user.Id) && IsValidId(user.Id)
+}

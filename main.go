@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 func SafeCreateUser(id int, name string) (*User, error) {
@@ -20,6 +21,16 @@ func SafeCreateUserDeeper(id int, name string) {
 	fmt.Printf("Name: %s, ID: %d", user.Name, user.Id)
 }
 
+// Analyzing function arguments
+func example(user *User) {
+	var ctx *Ctx
+	if user == nil {
+		log.Printf("user is nil")
+	}
+	user.Copy(ctx)
+}
+
 func main() {
 	SafeCreateUserDeeper(1, "Mukul")
+	example(&User{1, "Mukul"})
 }

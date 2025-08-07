@@ -11,6 +11,10 @@ type User struct {
 	Name string
 }
 
+type Ctx struct {
+	DebugEnabled bool
+}
+
 func CreateUser(id int, name string) (*User, error) {
 	if !IsValidId(id) {
 		return nil, errors.New("invalid id")
@@ -19,4 +23,17 @@ func CreateUser(id int, name string) (*User, error) {
 		return nil, nil
 	}
 	return &User{id, name}, nil
+}
+
+func (user *User) Copy(ctx *Ctx) *User {
+	if ctx.DebugEnabled {
+		println("copy user...")
+	}
+	if !user.Validate() || user == nil {
+		return nil
+	}
+	return &User{
+		Id:   user.Id,
+		Name: user.Name,
+	}
 }
